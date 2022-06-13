@@ -1,5 +1,17 @@
 {
-  "amogus_ambient": { "sounds": [ {
-    "name": "amogusmod:amogus_ambient",
+  "amogus_ambient_1": { "sounds": [ {
+    "name": "amogusmod:amogus_ambient_1",
+    "stream": true } ] },
+  "amogus_ambient_2": { "sounds": [ {
+    "name": "amogusmod:amogus_ambient_2",
+    "stream": true } ] },
+  "amogus_ambient_3": { "sounds": [ {
+    "name": "amogusmod:amogus_ambient_3",
+    "stream": true } ] },
+  "amogus_ambient_4": { "sounds": [ {
+    "name": "amogusmod:amogus_ambient_4",
+    "stream": true } ] },
+  "amogus_ambient_5": { "sounds": [ {
+    "name": "amogusmod:amogus_ambient_5",
     "stream": true } ] }
 }

@@ -2,6 +2,7 @@ package net.klode.amogusmod;
 
 import net.klode.amogusmod.entity.ModEntityTypes;
 import net.klode.amogusmod.entity.client.AmogusRenderer;
+import net.klode.amogusmod.item.ModItems;
 import net.klode.amogusmod.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ public class AmogusMod {
     public AmogusMod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(eventBus);
         ModEntityTypes.register(eventBus);
         ModSounds.register(eventBus);
 

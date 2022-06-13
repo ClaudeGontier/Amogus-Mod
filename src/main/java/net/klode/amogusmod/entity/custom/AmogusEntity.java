@@ -15,10 +15,8 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Silverfish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -28,12 +26,12 @@ import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import javax.annotation.Nullable;
+import software.bernie.geckolib3.core.manager.AnimationFactory;;import javax.annotation.Nullable;
+import java.util.Random;
 
 public class AmogusEntity extends Monster implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
+    private int RandomSound;
 
     public AmogusEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -56,7 +54,21 @@ public class AmogusEntity extends Monster implements IAnimatable {
     }
 
     protected SoundEvent getAmbientSound() {
-        return ModSounds.AMOGUS_AMBIENT.get();
+        RandomSound= new Random().nextInt(5);
+        switch(RandomSound) {
+            case 0:
+                return ModSounds.AMOGUS_AMBIENT_1.get();
+            case 1:
+                return ModSounds.AMOGUS_AMBIENT_2.get();
+            case 2:
+                return ModSounds.AMOGUS_AMBIENT_3.get();
+            case 3:
+                return ModSounds.AMOGUS_AMBIENT_4.get();
+            case 4:
+                return ModSounds.AMOGUS_AMBIENT_5.get();
+            default:
+                return null;
+        }
     }
 
     protected float getSoundVolume() {

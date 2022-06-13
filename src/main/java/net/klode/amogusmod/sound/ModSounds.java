@@ -12,8 +12,16 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, AmogusMod.MOD_ID);
 
-    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT
-            = registerSoundEvents("amogus_ambient");
+    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_1
+            = registerSoundEvents("amogus_ambient_1");
+    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_2
+            = registerSoundEvents("amogus_ambient_2");
+    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_3
+            = registerSoundEvents("amogus_ambient_3");
+    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_4
+            = registerSoundEvents("amogus_ambient_4");
+    public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_5
+            = registerSoundEvents("amogus_ambient_5");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
