@@ -22,6 +22,8 @@ public class ModSounds {
             = registerSoundEvents("amogus_ambient_4");
     public static RegistryObject<SoundEvent> AMOGUS_AMBIENT_5
             = registerSoundEvents("amogus_ambient_5");
+    public static RegistryObject<SoundEvent> AMOGUS_DEATH
+            = registerSoundEvents("amogus_death");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {

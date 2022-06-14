@@ -13,5 +13,8 @@
     "stream": true } ] },
   "amogus_ambient_5": { "sounds": [ {
     "name": "amogusmod:amogus_ambient_5",
+    "stream": true } ] },
+  "amogus_death": { "sounds": [ {
+    "name": "amogusmod:amogus_death",
     "stream": true } ] }
 }

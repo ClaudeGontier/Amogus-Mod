@@ -16,7 +16,7 @@ public class ModEntityTypes {
 
     public static final RegistryObject<EntityType<AmogusEntity>> AMOGUS = ENTITY_TYPES.register("amogus",
             () -> EntityType.Builder.of(AmogusEntity::new, MobCategory.MONSTER)
-                    .sized(0.8f, 1.4f)
+                    .sized(0.6f, 0.8f)
                     .build(new ResourceLocation(AmogusMod.MOD_ID, "amogus").toString()));
 
     public static void register(IEventBus eventBus) {

@@ -5,8 +5,21 @@ import java.util.Comparator;
 
 public enum AmogusVariant {
     RED(0),
-    GREEN(1),
-    BLUE(2);
+    BLUE(1),
+    GREEN(2),
+    PINK(3),
+    ORANGE(4),
+    YELLOW(5),
+    GRAY(6),
+    LILAC(7),
+    BLACK(8),
+    WHITE(9),
+    PURPLE(10),
+    BROWN(11),
+    CYAN(12),
+    LIME(13),
+    TAN(14),
+    SALMON(15);
 
     private static final AmogusVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.
             comparingInt(AmogusVariant::getId)).toArray(AmogusVariant[]::new);

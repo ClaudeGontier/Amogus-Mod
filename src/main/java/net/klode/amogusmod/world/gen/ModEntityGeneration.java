@@ -4,6 +4,7 @@ import net.klode.amogusmod.entity.ModEntityTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
@@ -12,8 +13,10 @@ import java.util.List;
 
 public class ModEntityGeneration {
     public static void onEntitySpawn(final BiomeLoadingEvent event) {
-        addEntityToAllOverworldBiomes(event, ModEntityTypes.AMOGUS.get(),
-                40, 2, 10);
+        addEntityToAllBiomesExceptThese(event, ModEntityTypes.AMOGUS.get(),
+                5, 2, 6, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+        addEntityToSpecificBiomes(event, ModEntityTypes.AMOGUS.get(),
+                42, 6, 10, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
     }
 
     private static void addEntityToAllBiomesExceptThese(BiomeLoadingEvent event, EntityType<?> type,

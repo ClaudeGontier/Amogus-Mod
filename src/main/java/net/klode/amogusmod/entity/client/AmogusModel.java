@@ -13,7 +13,7 @@ public class AmogusModel extends AnimatedGeoModel<AmogusEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(AmogusEntity object) {
-        return new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/amogus.png");
+        return AmogusRenderer.LOCATION_BY_VARIANT.get(object.getVariant());
     }
 
     @Override

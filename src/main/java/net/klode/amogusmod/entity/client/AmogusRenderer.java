@@ -19,11 +19,37 @@ public class AmogusRenderer extends GeoEntityRenderer<AmogusEntity> {
     public static final Map<AmogusVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(AmogusVariant.class), (p_114874_) -> {
                 p_114874_.put(AmogusVariant.RED,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/redamogus.png"));
-                p_114874_.put(AmogusVariant.GREEN,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/greenamogus.png"));
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/red.png"));
                 p_114874_.put(AmogusVariant.BLUE,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/blueamogus.png"));
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/blue.png"));
+                p_114874_.put(AmogusVariant.GREEN,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/green.png"));
+                p_114874_.put(AmogusVariant.PINK,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/pink.png"));
+                p_114874_.put(AmogusVariant.ORANGE,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/orange.png"));
+                p_114874_.put(AmogusVariant.YELLOW,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/yellow.png"));
+                p_114874_.put(AmogusVariant.GRAY,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/gray.png"));
+                p_114874_.put(AmogusVariant.LILAC,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/lilac.png"));
+                p_114874_.put(AmogusVariant.BLACK,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/black.png"));
+                p_114874_.put(AmogusVariant.WHITE,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/white.png"));
+                p_114874_.put(AmogusVariant.PURPLE,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/purple.png"));
+                p_114874_.put(AmogusVariant.BROWN,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/brown.png"));
+                p_114874_.put(AmogusVariant.CYAN,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/cyan.png"));
+                p_114874_.put(AmogusVariant.LIME,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/lime.png"));
+                p_114874_.put(AmogusVariant.TAN,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/tan.png"));
+                p_114874_.put(AmogusVariant.SALMON,
+                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/salmon.png"));
             });
     
     public AmogusRenderer(EntityRendererProvider.Context renderManager) {
