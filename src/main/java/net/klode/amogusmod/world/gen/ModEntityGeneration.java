@@ -13,10 +13,21 @@ import java.util.List;
 
 public class ModEntityGeneration {
     public static void onEntitySpawn(final BiomeLoadingEvent event) {
-        addEntityToAllBiomesExceptThese(event, ModEntityTypes.AMOGUS.get(),
+        addEntityToAllOverworldBiomesExceptThese(event, ModEntityTypes.AMOGUS.get(),
                 5, 2, 6, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
         addEntityToSpecificBiomes(event, ModEntityTypes.AMOGUS.get(),
-                42, 6, 10, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+                40, 6, 10, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+    }
+
+    private static void addEntityToAllOverworldBiomesExceptThese(BiomeLoadingEvent event, EntityType<?> type,
+                                                                 int weight, int minCount, int maxCount, ResourceKey<Biome>... biomes) {
+
+        boolean isBiomeSelected = Arrays.stream(biomes).map(ResourceKey::location)
+                .map(Object::toString).anyMatch(s -> s.equals(event.getName().toString()));
+
+        if(!event.getCategory().equals(Biome.BiomeCategory.THEEND) && !event.getCategory().equals(Biome.BiomeCategory.NETHER) && !isBiomeSelected) {
+            addEntityToAllBiomes(event, type, weight, minCount, maxCount);
+        }
     }
 
     private static void addEntityToAllBiomesExceptThese(BiomeLoadingEvent event, EntityType<?> type,
