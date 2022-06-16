@@ -16,5 +16,8 @@
     "stream": true } ] },
   "amogus_death": { "sounds": [ {
     "name": "amogusmod:amogus_death",
+    "stream": true } ] },
+  "boom": { "sounds": [ {
+    "name": "amogusmod:boom",
     "stream": true } ] }
 }

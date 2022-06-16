@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"amogus.animation.walk": {
+		"animation.amogus.walk": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -51,7 +51,7 @@
 				}
 			}
 		},
-		"amogus.animation.idle": {
+		"animation.amogus.idle": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "amogusmod:sus_ingot"
+    }
+  ],
+  "result": {
+    "item": "amogusmod:sus_nugget",
+    "count": 9
+  }
+}

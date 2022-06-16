@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, AmogusMod.MOD_ID);
@@ -24,6 +26,8 @@ public class ModSounds {
             = registerSoundEvents("amogus_ambient_5");
     public static RegistryObject<SoundEvent> AMOGUS_DEATH
             = registerSoundEvents("amogus_death");
+    public static Supplier<SoundEvent> BOOM
+            = registerSoundEvents("boom");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {

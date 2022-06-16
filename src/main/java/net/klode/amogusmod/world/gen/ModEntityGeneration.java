@@ -14,9 +14,9 @@ import java.util.List;
 public class ModEntityGeneration {
     public static void onEntitySpawn(final BiomeLoadingEvent event) {
         addEntityToAllOverworldBiomesExceptThese(event, ModEntityTypes.AMOGUS.get(),
-                5, 2, 6, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+                10, 2, 6, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
         addEntityToSpecificBiomes(event, ModEntityTypes.AMOGUS.get(),
-                40, 6, 10, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+                100, 6, 10, Biomes.DESERT, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
     }
 
     private static void addEntityToAllOverworldBiomesExceptThese(BiomeLoadingEvent event, EntityType<?> type,
