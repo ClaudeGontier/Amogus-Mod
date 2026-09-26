@@ -39,8 +39,6 @@ jobs:
   smoke-test:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -62,31 +60,6 @@ jobs:
 
       - name: Start client
         run: .github/scripts/smoke-test.sh client
-
-      - name: Print screenshots
-        if: always()
-        run: |
-          for f in screenshots/*.png; do
-            [ -f "$f" ] || continue
-            echo "=== BEGIN $f"
-            convert "$f" -resize 800x450 -quality 80 jpg:- | base64 -w 120
-            echo "=== END $f"
-          done
-
-      # Temporary: lets the screenshots be reviewed from a git checkout
-      - name: Push screenshots
-        if: github.event_name == 'pull_request' && hashFiles('.github/smoke/push-screenshots') != ''
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git fetch origin "${{ github.head_ref }}"
-          git checkout -B screenshots "origin/${{ github.head_ref }}"
-          mkdir -p docs/screenshots
-          for f in screenshots/*.png; do convert "$f" -quality 85 "docs/screenshots/$(basename "$f" .png).jpg"; done
-          git rm -q .github/smoke/push-screenshots
-          git add docs/screenshots
-          git commit -m "Add screenshots from the client smoke test"
-          git push origin "screenshots:${{ github.head_ref }}"
 
       - name: Upload logs
         if: always()
