@@ -1,0 +1,8 @@
+onboardAccessibility:false
+pauseOnLostFocus:false
+tutorialStep:none
+skipMultiplayerWarning:true
+joinedFirstServer:true
+narrator:0
+renderDistance:6
+simulationDistance:6

@@ -53,13 +53,23 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Install virtual display
-        run: sudo apt-get update && sudo apt-get install -y xvfb libgl1-mesa-dri
+        run: sudo apt-get update && sudo apt-get install -y xvfb libgl1-mesa-dri imagemagick xdotool
 
       - name: Start dedicated server
-        run: .github/scripts/smoke-test.sh server 'Done \('
+        run: .github/scripts/smoke-test.sh server
 
       - name: Start client
-        run: .github/scripts/smoke-test.sh client 'Sound engine started'
+        run: .github/scripts/smoke-test.sh client
+
+      - name: Print screenshots
+        if: always()
+        run: |
+          for f in screenshots/*.png; do
+            [ -f "$f" ] || continue
+            echo "=== BEGIN $f"
+            convert "$f" -resize 800x450 -quality 80 jpg:- | base64 -w 120
+            echo "=== END $f"
+          done
 
       - name: Upload logs
         if: always()
@@ -71,6 +81,7 @@ jobs:
             client.log
             run/logs/
             run/crash-reports/
+            screenshots/
           if-no-files-found: ignore
 
   release:
