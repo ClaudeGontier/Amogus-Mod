@@ -10,7 +10,7 @@ Requires Minecraft 1.21.11, NeoForge and [GeckoLib 5](https://modrinth.com/mod/g
 ## Building
 Java 21 is required. Run `./gradlew build`, the mod jar will be in `build/libs/`.
 
-Pushing a `v*` tag builds the mod on GitHub Actions and publishes it as a GitHub release.
+Pushing a `v*` tag, or running the Build workflow manually on `master` with "Publish a GitHub release" checked, builds the mod on GitHub Actions and publishes it as a GitHub release.
 
 
 This mod is registered under the CC-BY-NC-SA-4.0 license.
