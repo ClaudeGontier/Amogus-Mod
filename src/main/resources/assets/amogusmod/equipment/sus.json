@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "amogusmod:sus"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "amogusmod:sus"
+      }
+    ]
+  }
+}
