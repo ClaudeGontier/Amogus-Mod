@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#a#",
+    "###"
+  ],
+  "key": {
+    "#": "amogusmod:sus_ingot",
+    "a": "minecraft:apple"
+  },
+  "result": {
+    "count": 1,
+    "id": "amogusmod:sus_apple"
+  }
+}

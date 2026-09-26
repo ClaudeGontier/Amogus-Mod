@@ -2,22 +2,29 @@ package net.klode.amogusmod.entity.client;
 
 import net.klode.amogusmod.AmogusMod;
 import net.klode.amogusmod.entity.custom.AmogusEntity;
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import net.klode.amogusmod.entity.variant.AmogusVariant;
+import net.minecraft.resources.Identifier;
+import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
 
-public class AmogusModel extends AnimatedGeoModel<AmogusEntity> {
+public class AmogusModel extends GeoModel<AmogusEntity> {
+    private static final Identifier MODEL = AmogusMod.id("entity/amogus");
+    private static final Identifier ANIMATION = AmogusMod.id("entity/amogus");
+
     @Override
-    public ResourceLocation getModelLocation(AmogusEntity object) {
-        return new ResourceLocation(AmogusMod.MOD_ID, "geo/amogus.geo.json");
+    public Identifier getModelResource(GeoRenderState renderState) {
+        return MODEL;
     }
 
     @Override
-    public ResourceLocation getTextureLocation(AmogusEntity object) {
-        return AmogusRenderer.LOCATION_BY_VARIANT.get(object.getVariant());
+    public Identifier getTextureResource(GeoRenderState renderState) {
+        AmogusVariant variant = renderState.getOrDefaultGeckolibData(AmogusRenderer.VARIANT, AmogusVariant.RED);
+
+        return AmogusRenderer.LOCATION_BY_VARIANT.get(variant);
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(AmogusEntity animatable) {
-        return new ResourceLocation(AmogusMod.MOD_ID, "animations/amogus.animation.json");
+    public Identifier getAnimationResource(AmogusEntity animatable) {
+        return ANIMATION;
     }
 }

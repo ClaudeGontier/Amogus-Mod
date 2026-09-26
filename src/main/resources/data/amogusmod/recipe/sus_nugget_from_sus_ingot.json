@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "amogusmod:sus_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "amogusmod:sus_nugget"
+  }
+}

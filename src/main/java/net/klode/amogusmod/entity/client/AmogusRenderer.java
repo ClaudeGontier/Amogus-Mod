@@ -1,72 +1,40 @@
 package net.klode.amogusmod.entity.client;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.klode.amogusmod.AmogusMod;
 import net.klode.amogusmod.entity.custom.AmogusEntity;
 import net.klode.amogusmod.entity.variant.AmogusVariant;
-import net.minecraft.Util;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
+import org.jspecify.annotations.Nullable;
+import software.bernie.geckolib.constant.dataticket.DataTicket;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
 
+import java.util.Locale;
 import java.util.Map;
 
-public class AmogusRenderer extends GeoEntityRenderer<AmogusEntity> {
-    public static final Map<AmogusVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(AmogusVariant.class), (p_114874_) -> {
-                p_114874_.put(AmogusVariant.RED,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/red.png"));
-                p_114874_.put(AmogusVariant.BLUE,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/blue.png"));
-                p_114874_.put(AmogusVariant.GREEN,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/green.png"));
-                p_114874_.put(AmogusVariant.PINK,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/pink.png"));
-                p_114874_.put(AmogusVariant.ORANGE,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/orange.png"));
-                p_114874_.put(AmogusVariant.YELLOW,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/yellow.png"));
-                p_114874_.put(AmogusVariant.GRAY,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/gray.png"));
-                p_114874_.put(AmogusVariant.LILAC,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/lilac.png"));
-                p_114874_.put(AmogusVariant.BLACK,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/black.png"));
-                p_114874_.put(AmogusVariant.WHITE,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/white.png"));
-                p_114874_.put(AmogusVariant.PURPLE,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/purple.png"));
-                p_114874_.put(AmogusVariant.BROWN,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/brown.png"));
-                p_114874_.put(AmogusVariant.CYAN,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/cyan.png"));
-                p_114874_.put(AmogusVariant.LIME,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/lime.png"));
-                p_114874_.put(AmogusVariant.TAN,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/tan.png"));
-                p_114874_.put(AmogusVariant.SALMON,
-                        new ResourceLocation(AmogusMod.MOD_ID, "textures/entity/amogus/salmon.png"));
+public class AmogusRenderer<R extends LivingEntityRenderState & GeoRenderState> extends GeoEntityRenderer<AmogusEntity, R> {
+    public static final DataTicket<AmogusVariant> VARIANT = DataTicket.create("amogusmod_variant", AmogusVariant.class);
+
+    public static final Map<AmogusVariant, Identifier> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(AmogusVariant.class), map -> {
+                for (AmogusVariant variant : AmogusVariant.values()) {
+                    map.put(variant, AmogusMod.id("textures/entity/amogus/" + variant.name().toLowerCase(Locale.ROOT) + ".png"));
+                }
             });
-    
+
     public AmogusRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new AmogusModel());
         this.shadowRadius = 0.3f;
+        withScale(0.8F);
     }
 
+    // Capture the variant so the model can pick the matching texture
     @Override
-    public ResourceLocation getTextureLocation(AmogusEntity instance) {
-        return LOCATION_BY_VARIANT.get(instance.getVariant());
-    }
-
-    @Override
-    public RenderType getRenderType(AmogusEntity animatable, float partialTicks, PoseStack stack,
-                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
-                                    ResourceLocation textureLocation) {
-        stack.scale(0.8F, 0.8F, 0.8F);
-        return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
+    public void addRenderData(AmogusEntity animatable, @Nullable Void relatedObject, R renderState, float partialTick) {
+        renderState.addGeckolibData(VARIANT, animatable.getVariant());
     }
 }

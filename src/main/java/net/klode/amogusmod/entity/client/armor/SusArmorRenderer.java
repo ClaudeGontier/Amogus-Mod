@@ -1,19 +1,22 @@
 package net.klode.amogusmod.entity.client.armor;
 
 import net.klode.amogusmod.item.custom.SusArmorItem;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
 
-public class SusArmorRenderer extends GeoArmorRenderer<SusArmorItem> {
+public class SusArmorRenderer<R extends HumanoidRenderState & GeoRenderState> extends GeoArmorRenderer<SusArmorItem, R> {
     public SusArmorRenderer() {
         super(new SusArmorModel());
+    }
 
-        this.headBone = "armorHead";
-        this.bodyBone = "armorBody";
-        this.rightArmBone = "armorLeftArm";
-        this.leftArmBone = "armorRightArm";
-        this.rightLegBone = "armorRightLeg";
-        this.leftLegBone = "armorLeftLeg";
-        this.rightBootBone = "armorRightBoot";
-        this.leftBootBone = "armorLeftBoot";
+    // The arm bones of the sus armor model are swapped compared to GeckoLib's defaults
+    @Override
+    public String getBoneNameForSegment(R renderState, ArmorSegment segment) {
+        return switch (segment) {
+            case LEFT_ARM -> "armorRightArm";
+            case RIGHT_ARM -> "armorLeftArm";
+            default -> super.getBoneNameForSegment(renderState, segment);
+        };
     }
 }
