@@ -12,5 +12,11 @@ Java 21 is required. Run `./gradlew build`, the mod jar will be in `build/libs/`
 
 Pushing a `v*` tag, or running the Build workflow manually on `master` with "Publish a GitHub release" checked, builds the mod on GitHub Actions and publishes it as a GitHub release.
 
+## License
+Copyright (C) 2022-2026 Klode
 
-This mod is registered under the CC-BY-NC-SA-4.0 license.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3 only.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [LICENSE](LICENSE) file for more details.
+
+SPDX-License-Identifier: `GPL-3.0-only`
