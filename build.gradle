@@ -118,6 +118,11 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 
+// Ship the GPL text inside the mod jar
+tasks.named('jar', Jar).configure {
+    from('LICENSE')
+}
+
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
