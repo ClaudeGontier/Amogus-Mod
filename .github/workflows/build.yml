@@ -6,6 +6,11 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      release:
+        description: 'Publish a GitHub release (tag v<mod_version>) from this run'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -76,11 +81,24 @@ jobs:
 
   release:
     needs: [build, smoke-test]
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.release && github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Read mod version
+        id: version
+        run: |
+          mod_version=$(grep '^mod_version=' gradle.properties | cut -d= -f2)
+          minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d= -f2)
+          if [ "${{ github.ref_type }}" = tag ]; then tag="${{ github.ref_name }}"; else tag="v$mod_version"; fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "name=AMOGUS $mod_version (Minecraft $minecraft_version)" >> "$GITHUB_OUTPUT"
+          echo "minecraft_version=$minecraft_version" >> "$GITHUB_OUTPUT"
+
       - name: Download mod jar
         uses: actions/download-artifact@v5
         with:
@@ -90,5 +108,10 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.version.outputs.name }}
+          body: |
+            For Minecraft ${{ steps.version.outputs.minecraft_version }} with NeoForge. Requires [GeckoLib](https://modrinth.com/mod/geckolib) 5.4 or newer.
           files: dist/*.jar
           generate_release_notes: true
